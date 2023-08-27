@@ -20,3 +20,331 @@ There are five entities in our ER diagram which have been identified using the N
 - The Commodities tables enlists all the commodities that are a part of the H2S basket. There are around 98 commodities in this table with each commodity having its own unique key. The commodities table has one to mamy relationship with the exports and imports table
 - The exports and imports table contain the export and import recorod for each country on the basis of year of trade and the commodity traded. Both of these tables have one to many relationships with commodity as well as countries table. 
 ## Question and Answers
+1. **What was the total amount of export during 2021?**
+   ```
+   Select sum(Million$) as 'Total Exports during 2021'
+   from Exports
+   where Year = 2021
+   ```
+2. **What was the total export amount (irrespective of commodities) for each region during the entire time period?**
+```
+Select sum(Million$) as 'Export Value', Region.Name
+from Exports
+Join 
+Countries on Exports.[Country ID] = Countries.[Country ID]
+Join 
+Region on Region.[Region ID] = Countries.[Country ID]
+group by Region.Name
+```
+3.  **What was the total amount of imports during 2021?**
+```
+Select sum(Million$) as 'Total Imports during 2021'
+from Imports
+where Year = 2021
+```
+4. **What was the total import amount (irrespective of commodities) for each region during the entire time period?**
+```
+Select sum(Million$) as 'Import Value' , Region.Name
+from Imports
+Join 
+Countries on Imports.[Country ID] = Countries.[Country ID]
+Join 
+Region on Region.[Region ID] = Countries.[Country ID]
+group by Region.Name
+```
+5. **Among all the nations which nation had the highest export amount for 2015?**
+```
+Select sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+where Year=2015
+group by Countries.Name
+order by sum(Million$) desc
+```
+6. **Among all the nations which nation had the highest import amount for 2015?**
+```
+Select sum(Million$), Countries.Name
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+where Year=2015
+group by Countries.Name
+order by sum(Million$) desc
+```
+7. **Among all the nations which nation had the lowest export amount for 2015?**
+```
+Select sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+where Year=2015
+group by Countries.Name
+order by sum(Million$) asc
+```
+8. **Among all the nations which nation had the lowest import amount for 2015?**
+```
+Select sum(Million$), Countries.Name
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+where Year=2015
+group by Countries.Name
+order by sum(Million$) asc
+```
+9. **What was the trend in export values for Asia during 2015-21?**
+```
+Select sum(Million$), Exports.Year
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region.[Region ID] = Countries.[Region ID]
+Where Region.Name = 'Asia'
+group by Exports.Year
+```
+10. **What was the trend in import values for Europe during 2015-21?**
+```
+Select sum(Million$), Imports.Year
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+Join
+Region on Region.[Region ID] = Countries.[Region ID]
+Where Region.Name = 'Europe'
+group by Imports.Year
+```
+11. **Which nation has been the top exporter in each region for the year 2016?**
+```
+Select Sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region. [Region ID] = Countries.[Region ID]
+Where Exports.Year = 2016 and Region.Name = 'Asia'
+group by Countries.Name
+order by sum(Million$) desc
+```
+```
+Select Sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region. [Region ID] = Countries.[Region ID]
+Where Exports.Year = 2016 and Region.Name = 'Africa'
+group by Countries.Name
+order by sum(Million$) desc
+```
+```
+Select Sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region. [Region ID] = Countries.[Region ID]
+Where Exports.Year = 2016 and Region.Name = 'Europe'
+group by Countries.Name
+order by sum(Million$) desc
+```
+```
+Select Sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region. [Region ID] = Countries.[Region ID]
+Where Exports.Year = 2016 and Region.Name = 'North America'
+group by Countries.Name
+order by sum(Million$) desc
+```
+```
+Select Sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region. [Region ID] = Countries.[Region ID]
+Where Exports.Year = 2016 and Region.Name = 'South America'
+group by Countries.Name
+order by sum(Million$) desc
+```
+```
+Select Sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region. [Region ID] = Countries.[Region ID]
+Where Exports.Year = 2016 and Region.Name = 'Oceania'
+group by Countries.Name
+order by sum(Million$) desc
+```
+12. **Which commodity has been the most exported commodity during 2015-21?**
+```
+Select Sum(Million$), Commodities.Commodity
+from Exports
+Join 
+Commodities on Exports.[Commodity ID] = Commodities.[Commodity ID]
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+13. **Which commodity has been the most imported commodity during 2015-21?**
+```
+Select Sum(Million$), Commodities.Commodity
+from Imports
+Join 
+Commodities on Imports.[Commodity ID] = Commodities.[Commodity ID]
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+14. **Which nation has been the biggest exporter overall? Which nation has been the biggest importer overall?**
+```
+Select sum(Million$), Countries.Name
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+group by Countries.Name
+order by sum(Million$) desc
+```
+15. **Which were the top five most exported commodities in 2020?**
+```
+Select sum(Million$), Commodities.Commodity
+from Exports
+Join
+Commodities on Exports.[Commodity ID] = Commodities.[Commodity ID]
+where Exports.Year = 2020
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+16. **Which were the top five most imported commodities for each region during 2020?**
+```
+Select sum(Million$), Commodities.Commodity
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+join 
+Region on Region.[Region ID] = Countries.[Region ID]
+Join 
+Commodities on Commodities.[Commodity ID] = Imports.[Commodity ID]
+where Imports.Year= 2020 and Region.Name = 'Asia'
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+```
+Select sum(Million$), Commodities.Commodity
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+join 
+Region on Region.[Region ID] = Countries.[Region ID]
+Join 
+Commodities on Commodities.[Commodity ID] = Imports.[Commodity ID]
+where Imports.Year= 2020 and Region.Name = 'Europe'
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+```
+Select sum(Million$), Commodities.Commodity
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+join 
+Region on Region.[Region ID] = Countries.[Region ID]
+Join 
+Commodities on Commodities.[Commodity ID] = Imports.[Commodity ID]
+where Imports.Year= 2020 and Region.Name = 'Africa'
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+```
+Select sum(Million$), Commodities.Commodity
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+join 
+Region on Region.[Region ID] = Countries.[Region ID]
+Join 
+Commodities on Commodities.[Commodity ID] = Imports.[Commodity ID]
+where Imports.Year= 2020 and Region.Name = 'North America'
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+```
+Select sum(Million$), Commodities.Commodity
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+join 
+Region on Region.[Region ID] = Countries.[Region ID]
+Join 
+Commodities on Commodities.[Commodity ID] = Imports.[Commodity ID]
+where Imports.Year= 2020 and Region.Name = 'South America'
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+```
+Select sum(Million$), Commodities.Commodity
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+join 
+Region on Region.[Region ID] = Countries.[Region ID]
+Join 
+Commodities on Commodities.[Commodity ID] = Imports.[Commodity ID]
+where Imports.Year= 2020 and Region.Name = 'Oceania'
+group by Commodities.Commodity
+order by sum(Million$) desc
+```
+17. **What was the pattern of export for Iron and Steel in Europe?**
+```
+Select sum(Million$), Exports.Year
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region.[Region ID] = Countries.[Region ID]
+Join
+Commodities on Commodities.[Commodity ID] = Exports.[Commodity ID]
+where Region.Name='Europe' and Commodities.Commodity= 'IRON AND STEEL'
+group by Exports.Year
+```
+18. **What was the pattern of import for Beverages, Spirit and Vinegar in Asia?**
+```
+Select sum(Million$), Imports.Year
+from Imports
+Join
+Countries on Countries.[Country ID] = Imports.[Country ID]
+Join
+Region on Region.[Region ID] = Countries.[Region ID]
+Join
+Commodities on Commodities.[Commodity ID] = Imports.[Commodity ID]
+where Region.Name='Asia' and Commodities.Commodity= 'BEVERAGES, SPIRITS AND VINEGAR.'
+group by Imports.Year
+```
+19. **Which commodity had the least exports in North America?**
+```
+Select sum(Million$), Commodities.Commodity
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Region on Region.[Region ID] = Countries.[Region ID]
+Join
+Commodities on Commodities.[Commodity ID] = Exports.[Commodity ID]
+Where Region.Name = 'North America'
+group by Commodities.Commodity
+order by sum(Million$) asc
+```
+20. **What was the export pattern for Russia in the trade of Air crafts, spacecraft and parts thereof?**
+```
+Select sum(Million$), Exports.Year
+from Exports
+Join
+Countries on Countries.[Country ID] = Exports.[Country ID]
+Join
+Commodities on Commodities.[Commodity ID] = Exports.[Commodity ID]
+where Countries.Name = 'Russia' and Commodities.Commodity = 'AIRCRAFT, SPACECRAFT, AND PARTS THEREOF.'
+group by Exports.Year
+```
