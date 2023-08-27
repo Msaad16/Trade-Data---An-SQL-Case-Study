@@ -5,7 +5,7 @@
 
 [Entity Relationship Diagram](#Entity-Relationship-Diagram)
 
-[Question & Answers](#Question-&-Answers)
+[Question and Answers](#Question-and-Answers)
 
 Context
 India is one of the fastest developing nations of the world and trade between nations is the major component of any developing nation. This dataset includes the trade data for India for commodities in the HS2 basket.
@@ -74,4 +74,4 @@ Which commodity forms a major chunk of trade? Does it conform to theories of int
 How has the trade between India and any given country grown over time?
 ## Introduction
 ## Entity Relationship Diagram
-## Question & Answers
+## Question and Answers
