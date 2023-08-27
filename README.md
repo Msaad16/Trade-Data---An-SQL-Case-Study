@@ -54,7 +54,7 @@ group by Region.Name
 ```
 5. **Among all the nations which nation had the highest export amount for 2015?**
 ```
-Select sum(Million$), Countries.Name
+Select sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -64,7 +64,7 @@ order by sum(Million$) desc
 ```
 6. **Among all the nations which nation had the highest import amount for 2015?**
 ```
-Select sum(Million$), Countries.Name
+Select sum(Million$) as 'Value', Countries.Name
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -74,7 +74,7 @@ order by sum(Million$) desc
 ```
 7. **Among all the nations which nation had the lowest export amount for 2015?**
 ```
-Select sum(Million$), Countries.Name
+Select sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -84,7 +84,7 @@ order by sum(Million$) asc
 ```
 8. **Among all the nations which nation had the lowest import amount for 2015?**
 ```
-Select sum(Million$), Countries.Name
+Select sum(Million$) as 'Value', Countries.Name
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -94,7 +94,7 @@ order by sum(Million$) asc
 ```
 9. **What was the trend in export values for Asia during 2015-21?**
 ```
-Select sum(Million$), Exports.Year
+Select sum(Million$) as 'Value', Exports.Year
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -102,10 +102,11 @@ Join
 Region on Region.[Region ID] = Countries.[Region ID]
 Where Region.Name = 'Asia'
 group by Exports.Year
+order by Year
 ```
 10. **What was the trend in import values for Europe during 2015-21?**
 ```
-Select sum(Million$), Imports.Year
+Select sum(Million$) as 'Value', Imports.Year
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -113,10 +114,11 @@ Join
 Region on Region.[Region ID] = Countries.[Region ID]
 Where Region.Name = 'Europe'
 group by Imports.Year
+order by Year
 ```
 11. **Which nation has been the top exporter in each region for the year 2016?**
 ```
-Select Sum(Million$), Countries.Name
+Select Sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -127,7 +129,7 @@ group by Countries.Name
 order by sum(Million$) desc
 ```
 ```
-Select Sum(Million$), Countries.Name
+Select Sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -138,7 +140,7 @@ group by Countries.Name
 order by sum(Million$) desc
 ```
 ```
-Select Sum(Million$), Countries.Name
+Select Sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -149,7 +151,7 @@ group by Countries.Name
 order by sum(Million$) desc
 ```
 ```
-Select Sum(Million$), Countries.Name
+Select Sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -160,7 +162,7 @@ group by Countries.Name
 order by sum(Million$) desc
 ```
 ```
-Select Sum(Million$), Countries.Name
+Select Sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -171,7 +173,7 @@ group by Countries.Name
 order by sum(Million$) desc
 ```
 ```
-Select Sum(Million$), Countries.Name
+Select Sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -183,7 +185,7 @@ order by sum(Million$) desc
 ```
 12. **Which commodity has been the most exported commodity during 2015-21?**
 ```
-Select Sum(Million$), Commodities.Commodity
+Select Sum(Million$) as 'Value', Commodities.Commodity
 from Exports
 Join 
 Commodities on Exports.[Commodity ID] = Commodities.[Commodity ID]
@@ -192,7 +194,7 @@ order by sum(Million$) desc
 ```
 13. **Which commodity has been the most imported commodity during 2015-21?**
 ```
-Select Sum(Million$), Commodities.Commodity
+Select Sum(Million$) as 'Value', Commodities.Commodity
 from Imports
 Join 
 Commodities on Imports.[Commodity ID] = Commodities.[Commodity ID]
@@ -201,7 +203,7 @@ order by sum(Million$) desc
 ```
 14. **Which nation has been the biggest exporter overall? Which nation has been the biggest importer overall?**
 ```
-Select sum(Million$), Countries.Name
+Select sum(Million$) as 'Value', Countries.Name
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -210,7 +212,7 @@ order by sum(Million$) desc
 ```
 15. **Which were the top five most exported commodities in 2020?**
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Exports
 Join
 Commodities on Exports.[Commodity ID] = Commodities.[Commodity ID]
@@ -220,7 +222,7 @@ order by sum(Million$) desc
 ```
 16. **Which were the top five most imported commodities for each region during 2020?**
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -233,7 +235,7 @@ group by Commodities.Commodity
 order by sum(Million$) desc
 ```
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -246,7 +248,7 @@ group by Commodities.Commodity
 order by sum(Million$) desc
 ```
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -259,7 +261,7 @@ group by Commodities.Commodity
 order by sum(Million$) desc
 ```
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -272,7 +274,7 @@ group by Commodities.Commodity
 order by sum(Million$) desc
 ```
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -285,7 +287,7 @@ group by Commodities.Commodity
 order by sum(Million$) desc
 ```
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -299,7 +301,7 @@ order by sum(Million$) desc
 ```
 17. **What was the pattern of export for Iron and Steel in Europe?**
 ```
-Select sum(Million$), Exports.Year
+Select sum(Million$) as 'Value', Exports.Year
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -312,7 +314,7 @@ group by Exports.Year
 ```
 18. **What was the pattern of import for Beverages, Spirit and Vinegar in Asia?**
 ```
-Select sum(Million$), Imports.Year
+Select sum(Million$) as 'Value', Imports.Year
 from Imports
 Join
 Countries on Countries.[Country ID] = Imports.[Country ID]
@@ -325,7 +327,7 @@ group by Imports.Year
 ```
 19. **Which commodity had the least exports in North America?**
 ```
-Select sum(Million$), Commodities.Commodity
+Select sum(Million$) as 'Value', Commodities.Commodity
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
@@ -339,7 +341,7 @@ order by sum(Million$) asc
 ```
 20. **What was the export pattern for Russia in the trade of Air crafts, spacecraft and parts thereof?**
 ```
-Select sum(Million$), Exports.Year
+Select sum(Million$) as 'Value', Exports.Year
 from Exports
 Join
 Countries on Countries.[Country ID] = Exports.[Country ID]
