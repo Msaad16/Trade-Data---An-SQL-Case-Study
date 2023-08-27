@@ -1,7 +1,7 @@
 # Trade Data - An SQL Case Study
 
 ## Table of Contents
-[Introduction]()
+[Introduction](Introduction)
 
 [Entity Relationship Diagram](#Entity_Relationship_Diagram)
 
