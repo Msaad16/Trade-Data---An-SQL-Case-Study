@@ -21,11 +21,13 @@ There are five entities in our ER diagram which have been identified using the N
 - The exports and imports table contain the export and import recorod for each country on the basis of year of trade and the commodity traded. Both of these tables have one to many relationships with commodity as well as countries table. 
 ## Question and Answers
 1. **What was the total amount of export during 2021?**
-   ```
-   Select sum(Million$) as 'Total Exports during 2021'
-   from Exports
-   where Year = 2021
-   ```
+```
+Select sum(Million$) as 'Total Exports during 2021'
+from Exports
+where Year = 2021
+```
+![Q1](https://github.com/Msaad16/Trade-Data---An-SQL-Case-Study/assets/91818867/71069867-1f66-41af-ac69-b3203adfec90)
+
 2. **What was the total export amount (irrespective of commodities) for each region during the entire time period?**
 ```
 Select sum(Million$) as 'Export Value', Region.Name
@@ -36,12 +38,16 @@ Join
 Region on Region.[Region ID] = Countries.[Country ID]
 group by Region.Name
 ```
+![Q2](https://github.com/Msaad16/Trade-Data---An-SQL-Case-Study/assets/91818867/a36e19ff-f57a-4679-aa43-72e5fe030fbd)
+
 3.  **What was the total amount of imports during 2021?**
 ```
 Select sum(Million$) as 'Total Imports during 2021'
 from Imports
 where Year = 2021
 ```
+![Q3](https://github.com/Msaad16/Trade-Data---An-SQL-Case-Study/assets/91818867/b6dd9548-a4e6-4062-bacf-a436bb7791ae)
+
 4. **What was the total import amount (irrespective of commodities) for each region during the entire time period?**
 ```
 Select sum(Million$) as 'Import Value' , Region.Name
