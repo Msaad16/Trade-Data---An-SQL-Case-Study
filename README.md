@@ -8,7 +8,7 @@
 [Question and Answers](#Question-and-Answers)
 
 ## Introduction
-For any developing nation, the data on its trade with the rest of the world is a useful parameter to judge its growth. This SQL case study uses the trade data of 60 nations for the time period 2015-21 and seeks to determine the import export trends and trade insights for the commodities in the H2S basket. For this purpose we will be framing 20 questions and then use SQL Queries to answer them. The original data for this case study can be found [here.](https://www.kaggle.com/datasets/lakshyaag/india-trade-data) For the purpose of analysis the original list of 254 nations has been ccut short to 60 only and the time frame of the study has also been reduced from 2010-21 to 2015-21. 
+For any developing nation, the data on its trade with the rest of the world is a useful parameter to judge its growth. This SQL case study uses the trade data of 60 nations for the time period 2015-21 and seeks to determine the import export trends and trade insights for the commodities in the H2S basket. For this purpose we will be framing 20 questions and then use SQL Queries to answer them. The original data for this case study can be found [here.](https://www.kaggle.com/datasets/lakshyaag/india-trade-data) For the purpose of analysis the original list of 254 nations has been cut short to 60 only and the time frame of the study has also been reduced from 2010-21 to 2015-21. 
 **NOTE: ALL THE VALUES IN THE DATA ARE IN TERMS OF MILLION US DOLLARS**
 
 ## Entity Relationship Diagram
